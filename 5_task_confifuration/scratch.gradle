@@ -1,0 +1,20 @@
+task initializeDatabase
+initializeDatabase << { println 'connect to database' }
+initializeDatabase << { println 'update database schema' }
+initializeDatabase { println 'update database schema' }
+
+// Anything between {} is first class object, can be assigned to variable
+// and executed later
+// Good for holding block of configuration code
+
+// This creates a configuration block, run during gradle configuration lifecycle phase
+// which runs before execution phase, where task actually executed
+// Phases
+// - Initialization
+//   - task objetcs assembled into internal object model called DAG
+//   - decision of which project participate in build
+// - Configuration
+// - Execution
+
+initializeDatabase { print 'configuring .. ' }
+initializeDatabase { println ' database connection' }
