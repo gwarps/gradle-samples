@@ -1,0 +1,36 @@
+task createSchema
+task loadTestData
+
+
+createSchema << {
+   println 'creating schema ..'
+}
+
+
+// simple
+loadTestData << {
+   println 'Testing load data.'
+}
+// Configuration dependency
+loadTestData {
+   dependsOn createSchema
+}
+
+// Another Syntax
+loadTestData {
+   dependsOn << createSchema
+}
+
+// With optional quotes
+loadTestData {
+   dependsOn 'createSchema'
+}
+
+// Explicit call on task object
+loadTestData {
+   loadTestData.dependsOn createSchema
+}
+
+// Shortcut
+// This will only work with task decleration
+//loadTestData(dependsOn: createSchema)
