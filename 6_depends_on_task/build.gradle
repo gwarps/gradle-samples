@@ -12,11 +12,13 @@ loadTestData << {
    println 'Testing load data.'
 }
 // Configuration dependency
+// Good way
 loadTestData {
    dependsOn createSchema
 }
 
 // Another Syntax
+// Conventional and ok
 loadTestData {
    dependsOn << createSchema
 }
