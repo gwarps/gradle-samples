@@ -1,0 +1,38 @@
+task createSchema
+task compileTestClasses
+task loadTestData
+
+createSchema << {
+   println('creating schema..')
+}
+
+compileTestClasses << {
+   println('compiled test classes')
+}
+
+loadTestData << {
+   println('Test Data Loaded')
+}
+
+// one at a time
+// Preferred way
+loadTestData {
+   dependsOn << createSchema
+   dependsOn << compileTestClasses
+}
+
+// as variable-length list
+// this can be another cleaner way
+task world {
+   dependsOn createSchema,
+             compileTestClasses
+}
+
+// explicit method call
+//world.dependsOn createSchema, compileTestClasses
+
+// groovy list syntax
+// will only work when combined with task decleration
+// world(dependsOn: [createSchema, createTestClasses])
+task sample(dependsOn: [createSchema, 
+                        compileTestClasses])
