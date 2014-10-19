@@ -1,0 +1,13 @@
+// The doLast method is very similar to the doFirst() method, except that it appends
+// behavior to the end of an action, rather than before it.
+
+task setupTest << {
+    println 'create database schema'
+}
+setupTest.doLast {
+    println 'load test data'
+}
+
+setupTest.doLast {
+    println 'update version table'
+}
