@@ -1,0 +1,14 @@
+// express a predicate which determines whether a task should be executed
+// The value of the predicate is the value returned by the closure.
+
+task createSchema << {
+    println 'create database schema'
+}
+
+task loadTestData(dependsOn: createSchema) << {
+    println 'load test data'
+}
+
+loadTestData.onlyIf {
+    2 == 1
+}
