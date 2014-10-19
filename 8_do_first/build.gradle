@@ -1,0 +1,13 @@
+// Adds a block of executable code to the beginning of a task’s action
+// The doFirst method
+// allows you to add a bit of behavior to the beginning of an existing action, even if that
+// action is defined by a build file or a plug-in you don’t control
+
+task setupDatabaseTests << {
+    // This is the task's existing action
+    println 'load test data'
+}
+
+setupDatabaseTests.doFirst {
+    println 'create schema'
+}
