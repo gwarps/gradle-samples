@@ -1,0 +1,15 @@
+// multiple calls to doFirst inside a single configuration block
+
+// Initial task definition (maybe not easily editable)
+task setupTest << {
+    println 'load test data'
+}
+// Our changes to the task (in a place we can edit them)
+setupTest {
+    doFirst {
+        println 'create database schema'
+    }
+    doFirst {
+        println 'drop database schema'
+    }
+}
