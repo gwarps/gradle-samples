@@ -1,0 +1,16 @@
+// Repeated calls to the doFirst method are additive. Each previous call’s action code is
+// retained, and the new closure is appended to the start of the list to be executed in order.
+
+task setupTests << {
+    println 'load test data'
+}
+
+setupTests.doFirst {
+    println 'create database schema'
+}
+
+setupTests.doFirst {
+    println 'drop database schema'
+}
+
+// Note that closure added last will be executed first
