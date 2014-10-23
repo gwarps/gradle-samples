@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+// not all task set didWork on completion
+// Some build-in tasks do
+
+
+task emailMe(dependsOn: compileJava) << {
+    if (tasks.compileJava.didWork) {
+        println 'SEND EMAIL ANNOUNCING SUCCESS'
+    }
+}
