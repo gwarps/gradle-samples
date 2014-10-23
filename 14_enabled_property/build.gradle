@@ -1,0 +1,12 @@
+// set enabled to false for disabling a task
+// dependecies will still run though
+
+task templates << {
+    println 'process email templates'
+}
+
+task sendEmails(dependsOn: templates) << {
+    println 'send emails'
+}
+
+sendEmails.enabled = false
