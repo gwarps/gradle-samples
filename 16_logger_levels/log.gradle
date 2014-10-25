@@ -1,0 +1,44 @@
+// implements org.slf4j.Logger interface
+// DEBUG - high volume build-developer rich messages
+// INFO  - low volume, optional interest
+// LIFECYCLE - low volume from Gradle
+//           - about lifecycle changes and build execution flow
+//           - default when executed WITHOUT -q option
+//           - call to println emits log message at this level
+// WARN      - low volume, imp messages for potential problems
+//           - QUIET level messages supressed
+// QUIET - default when -q option USED
+//       - System.out.println emits to this level
+//       - WARN level is supressed at this level
+// ERROR - rare but critically important
+//       - emitted in all cases
+//       - call to System.out.println won't be emitted
+
+
+task logLevel << {
+    def levels = ['DEBUG',
+                  'INFO',
+                  'LIFECYCLE',
+                  'QUIET',
+                  'WARN',
+                  'ERROR']
+
+    levels.each { level ->
+
+// LOGGING.LEVEL can be set and get here
+        logging.level = level
+        def logMessage = "SETTING LogLevel=${level}"
+        logger.error logMessage
+        logger.error '-' * logMessage.size()
+
+        logger.debug 'DEBUG ENABLED'
+        logger.info  'INFO ENABLED'
+        logger.lifecycle  'LIFECYCLE ENABLED'
+        logger.warn  'WARN ENABLED'
+        logger.quiet  'QUIET ENABLED'
+        logger.error  'ERROR ENABLED'
+
+        println 'This is PRINTLN Output'
+        logger.error ' '
+    }
+}
