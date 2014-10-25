@@ -1,0 +1,13 @@
+// Small human readable metedata not visible during build
+
+task helloWorld(description: 'Say hello to world') << {
+    println 'hello world'
+}
+
+//helloWorld << {
+//    println 'hello, world'
+//}
+
+helloWorld {
+    description = 'Hello 2'
+}
