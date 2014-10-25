@@ -1,0 +1,6 @@
+// Simple name with leading colon
+// :subProject:echoMyPath for nested
+
+task echoMyPath << {
+    println "This task's path is ${path}"
+}
